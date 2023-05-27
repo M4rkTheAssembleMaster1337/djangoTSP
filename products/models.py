@@ -27,7 +27,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return "%s %s" % (self.price, self.name)
+        return "%s" % (self.id)
 
     class Meta:
         verbose_name = 'Товар'

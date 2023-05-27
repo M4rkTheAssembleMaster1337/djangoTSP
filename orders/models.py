@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from products.models import Product
@@ -16,7 +17,7 @@ class Status(models.Model):
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-        return "Статус %s" % self.name
+        return "%s" % self.name
 
     class Meta:
         verbose_name = 'Статус'
@@ -25,10 +26,12 @@ class Status(models.Model):
 
 class Order(models.Model):
     #customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.CASCADE)
-    customer_name = models.CharField(max_length=128, blank=True, null=True, default=None)
-    customer_email = models.EmailField(blank=True, null=True, default=None)
-    customer_phone = models.CharField(max_length=36, blank=True, null=True, default=None)
-    customer_address = models.CharField(max_length=128, blank=True, null=True, default=None)
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
+    complete = models.BooleanField(default=False, null=True, blank=False)
+    #customer_name = models.CharField(max_length=128, blank=True, null=True, default=None)
+    #customer_email = models.EmailField(blank=True, null=True, default=None)
+    #customer_phone = models.CharField(max_length=36, blank=True, null=True, default=None)
+    #customer_address = models.CharField(max_length=128, blank=True, null=True, default=None)
     comments = models.TextField(blank=True, null=True, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -36,8 +39,9 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2,
                                       default=0)  # total price for all products in order
 
+
     def __str__(self):
-        return "%s %s %s" % (self.id, self.customer_email, self.status.name)
+        return "%s" % (self.id)
 
     class Meta:
         verbose_name = 'Заказ'

@@ -5,9 +5,12 @@
     line-height: 53px;
 }
 html,body{
+    padding: 0;
+    margin: 0;
     height:100%;
     max-height:100%;
     font-family: 'Roboto', sans-serif;
+
 }
 .top-container{
     padding-top:5%;
@@ -15,7 +18,7 @@ html,body{
     color: black;
 }
 .general-container{
-      background: url('img/bg_boxing3.jpg') 0px -80px no-repeat;
+    background: url('img/bg_boxing3.jpg') 0px -300px no-repeat;
     height: 100%;
 
 }
@@ -26,3 +29,219 @@ html,body{
     font-weight: 1000;
     color:black;
 }
+
+#total_orders{
+    background-color: #191C20;
+}
+#pending_orders{
+    background-color: #E4D00A;
+}
+#done_orders{
+    background-color: #0BDA51;
+}
+
+#cancelled_orders
+{
+    background-color: #100C08;
+}
+th{
+    text-align: center;
+}
+.checkbox-xl .form-check-input {
+    scale: 3;
+    float: none;
+
+ }
+.checkbox{
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+td{
+    vertical-align: middle;
+}
+.btn-primary.buy{
+margin:auto;
+    display:block;
+}
+
+.btn-success.accept{
+    margin:auto;
+    display:block;
+}
+
+.btn-danger.decline{
+    margin:auto;
+    display:block;
+}
+
+#form-cell{
+
+}
+
+#typeNumber{
+
+}
+#form-title{
+    color: white !important;
+}
+
+.form-container{
+    margin-top: 20px;
+}
+
+
+.login-btn{
+    width: 100%;
+    background-color: #33ccff !important;
+    color:white !important;
+}
+
+.login-btn:focus{
+    box-shadow: none;
+    outline:0px !important;
+
+}
+
+.login-container{
+    padding: 0.2rem;
+}
+
+.input-group-text{
+    background: #f7ba5b;
+    color: white !important;
+    border-radius: 0.25rem 0 0 0.25rem
+
+}
+
+.input_user, .input_pass:focus{
+    box-shadow: none;
+    outline: 0px;
+}
+
+.user-card{
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0;
+    background: #232B2B;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 5px;
+}
+
+.form-control{
+    margin-left: 0;
+}
+
+#messages{
+    color:red;
+}
+
+#messages_ok{
+    color:lawngreen;
+}
+
+.hello-msg{
+    color:white;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.bi.bi-cart{
+color:white;
+margin-top:1px;
+}
+
+#cart-total{
+    color:white;
+}
+
+#cart-link{
+text-decoration:none;
+display:inline-block;
+margin-top:7px;
+}
+
+.form-inline.cart{
+    display:inline-block;
+    margin-left:10px;
+
+}
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+button.btn-success.btn-lg.cart{
+margin-bottom:5px;
+
+}
+
+.cart-row{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.small-header1{
+flex:2;
+}
+.small-header2{
+flex:1;
+}
+
+th.th1{
+text-align:center;
+vertical-align:middle;
+}
+.quantity{
+display:inline-block;
+font-weight:700;
+padding-right:10px;
+padding-top:1px;
+}
+
+.chg-quantity{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+.chg-quantity:hover{
+	opacity: 0.6;
+}
+
+.row-image{
+	width: 100px;
+	    margin-left: auto;
+    margin-right: auto;
+     display: block;
+}
+
+.history{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.table{
+    border-color:black;
+}
+
+

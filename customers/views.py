@@ -10,6 +10,8 @@ from .serializers import CustomerSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from rest_framework.generics import GenericAPIView
+from .serializers import RegisterSerializer
 
 class CustomerAPIView(APIView):
     def post(self, request):
@@ -21,3 +23,5 @@ class CustomerAPIView(APIView):
 
         )
         return Response({'post': model_to_dict(post_new)})
+
+

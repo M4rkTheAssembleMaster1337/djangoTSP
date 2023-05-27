@@ -19,18 +19,43 @@ from django.conf import settings
 
 from django.contrib import admin
 from django.urls import path, include
-from landing import views
+
+import accounts.views
+#from landing import views
 
 from products.views import ProductAPIView
 
 from customers.views import CustomerAPIView
 from orders.views import OrderAPIView
 
+#import accounts.views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('landing.urls')),
+    path('landing/', include('landing.urls')),
     path('api/v1/productlist', ProductAPIView.as_view()),
     path('api/v1/reg', CustomerAPIView.as_view()),
-    path('api/v1/orders', OrderAPIView.as_view())
+    path('api/v1/orders', OrderAPIView.as_view()),
+    #path('api/v1/drf-auth/', include('rest_framework.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path('', include('accounts.urls'), name="home"),
+    path('login/', accounts.views.login_page, name="login"),
+    path('register/', accounts.views.register_page, name="register"),
+    path('logout/', accounts.views.logout_user, name="logout"),
+    path('user/', accounts.views.userPage, name="user-page"),
+    path('update_item/', accounts.views.updateItem, name="checkout"),
+    path('order_history/', accounts.views.order_history_page, name="history"),
+    path('kapas/', accounts.views.kapas, name="kapas"),
+    path('gloves/', accounts.views.gloves, name="gloves"),
+    path('bandage/', accounts.views.bandage, name="bandage"),
+    path('helmets/', accounts.views.helmets, name="helmets"),
+    path('profit_page/', accounts.views.profit_page, name="profit"),
+    path('popular/', accounts.views.popularity_page, name="popular"),
+    path('process_order/', accounts.views.processOrder, name="process_order"),
+    path('update_order/', accounts.views.update_order, name="update_order")
+
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
