@@ -1,0 +1,44 @@
+
+{%  extends 'accounts/main.html' %}
+{% load static %}
+
+{%  block content %}
+
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body text-center">
+                <h5> Товары </h5>
+            </div>
+            <div class="card card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th> Название </th>
+                        <th> Цена </th>
+                        <th> Изображение </th>
+                        <th> Описание </th>
+                        <th> Добавить в заказ </th>
+                    </tr>
+
+                    {% for i in products %}
+                        <tr>
+                            <td>{{ i.product.name}}</td>
+                            <td> {{ i.product.price}}</td>
+                            <td> <img src = "{{i.image.url}}" class="img-fluid" alt="there must be image"> </td>
+                            <td> {{ i.product.description}}</td>
+                            <td id="form-cell">
+                                 <button data-product= {{i.product.id }} data-action="add" type="button" class="btn btn-primary buy"> <i class="bi bi-bag-plus-fill"></i> </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+    </div>
+
+{% endblock %}

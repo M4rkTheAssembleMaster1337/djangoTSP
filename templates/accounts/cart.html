@@ -1,0 +1,101 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h3> Корзина </h3>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a class="btn  btn-outline-dark" href="{% url 'products' %}"> &#x2190; Продолжить покупки </a>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th class="th1"><h5> Товары: <strong>{{ nmb_items }}</strong></h5></th>
+                    <th class="th1"><h5> Сумма: <strong>{{ total }}</strong></h5></th>
+                    <th>
+                        {% if total > 0 %}
+                            <button type="button" class="btn btn-success btn-lg cart" id="make-payment"> Заказать </button>
+                        {% endif %}
+                        {% if total == 0 %}
+                            <button type="button" class="btn btn-success btn-lg cart" disabled> Заказать </button>
+                        {% endif %}
+
+                    </th>
+                </tr>
+            </table>
+
+
+
+
+        </div>
+        <br>
+
+
+
+        <div class="box-element">
+            <div class="cart-row">
+                <div class="small-header1"></div>
+                <div class="small-header1"><strong>Товар</strong></div>
+                <div class="small-header2"><strong>Цена</strong></div>
+                <div class="small-header2"><strong>Количество</strong></div>
+                <div class="small-header2"><strong>Общая стоимость</strong></div>
+
+            </div>
+            {% for item1, item2 in items %}
+            <div class="cart-row">
+                <div class="small-header1"> <img class="row-image" src="{{item2.image.url}}"></div>
+                <div class="small-header1">{{ item1.product.name }}</div>
+                <div class="small-header2">{{ item1.price_per_item }}</div>
+                <div class="small-header2">
+                    <p class="quantity"> {{ item1.nmb }}</p>
+                    <div class="quantity">
+                        <img data-product= {{item1.product.id}} data-action="add" class="chg-quantity buy" src="{% static 'img/arrow-up.png'%}">
+                        <img data-product= {{item1.product.id}} data-action="remove" class="chg-quantity buy" src="{% static 'img/arrow-down.png'%}">
+                    </div>
+                </div>
+                <div class="small-header2"> {{ item1.total_price }} </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+     document.getElementById('make-payment').addEventListener('click', function(e){
+        submitData()
+
+    })
+
+    function submitData(){
+        console.log('Оплата пошла')
+
+        var total = '{{ total }}'
+
+
+        var url = '/process_order/'
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type' : 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'total': total})
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Выполнено: ', data);
+            alert('Заказ отправлен');
+            window.location.href = "{% url 'home' %}"
+        })
+
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{%  extends 'accounts/main.html' %}
+
+{%  block content %}
+
+    {% include 'accounts/status_.html' %}
+
+     <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body text-center">
+                <h5> Новые заказы </h5>
+            </div>
+            <div class="card card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th> Дата заказа </th>
+                        <th> Сумма </th>
+                        <th> Пользователь </th>
+                        <th> Выполнить </th>
+                        <th> Отклонить </th>
+                    </tr>
+
+                    {% for i in orders %}
+                        <tr>
+                            <td style="text-align: center" >{{ i.created}}</td>
+                            <td style="text-align: center"> {{ i.total_price}}</td>
+                            <td style="text-align: center"> {{ i.user.username }} </td>
+                            <td> <button data-order= {{i.id }} type="button" class="btn btn-success accept"> <i class="bi bi-check"></i> </button></td>
+                            <td> <button data-order= {{i.id }} type="button" class="btn btn-danger decline"> <i class="bi bi-x-octagon-fill"></i> </button></td>
+
+
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

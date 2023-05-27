@@ -1,0 +1,59 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+    <a href="{% url 'home' %}"><img src="{% static 'img/rockyLogo.png' %}" alt="Rocky Balboa"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'popular' %}"> Популярные товары </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profit' %}"> Статистика по прибыли </a>
+        </li>
+
+
+          {% endif %}
+
+          {% if not request.user.is_staff %}
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Категории
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'gloves' %}">Перчатки</a></li>
+              <li><a class="dropdown-item" href="{% url 'kapas' %}">Капы</a></li>
+              <li><a class="dropdown-item" href="{% url 'helmets' %}">Шлемы</a></li>
+              <li><a class="dropdown-item" href="{% url 'bandage' %}">Бинты</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'history' %}">История заказов</a>
+            </li>
+
+          <div class="form-inline cart">
+
+                  <a id="cart-link" href="{% url 'cart' %}">
+                  <i class="bi bi-cart"></i>
+                </a>
+                <span id="cart-total"> {{ nmb_items }} </span>
+
+
+          </div>
+
+          {% endif %}
+
+      </ul>
+    </div>
+        <span class="hello-msg"> Здравствуйте, {{ request.user }}! </span>
+        <span>
+            <a class="link-light" href="{% url 'logout' %}">Выход из аккаунта</a>
+        </span>
+    </div>
+</nav>

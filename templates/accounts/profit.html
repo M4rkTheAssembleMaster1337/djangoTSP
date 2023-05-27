@@ -1,0 +1,45 @@
+{%  extends 'accounts/main.html' %}
+{% load static %}
+
+{%  block content %}
+
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body text-center">
+                <h5> Статистика по прибыли  </h5>
+                </div>
+            <div class="card card-body">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th> Место </th>
+                        <th> Название </th>
+                        <th> Изображение </th>
+                        <th> Общая прибыль </th>
+                    </tr>
+
+                    {% for i, j in total %}
+                        <tr>
+                            <td style="text-align: center"> {{ i }} </td>
+                            {% for image in images %}
+                                {% if j.product == image.product.id %}
+                                    <td style="text-align: center"> {{ image.product.name }} </td>
+                                    <td> <img src = "{{image.image.url}}" class="row-image" alt="there must be image"> </td>
+                                {% endif %}
+                            {% endfor %}
+                            <td style="text-align: center"> {{ j.total }} </td>
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+    </div>
+
+{% endblock %}

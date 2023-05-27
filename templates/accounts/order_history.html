@@ -1,0 +1,60 @@
+
+{%  extends 'accounts/main.html' %}
+{% load static %}
+
+{%  block content %}
+
+
+
+ <br>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th> Дата заказа </th>
+                        <th> Сумма </th>
+                        <th> Статус </th>
+                        <th> Товары в заказе </th>
+                    </tr>
+
+                    {% for i in orders %}
+                        <tr>
+                            <td style="text-align: center" >{{ i.created}}</td>
+                            <td style="text-align: center"> {{ i.total_price}}</td>
+                            <td style="text-align: center"> {{ i.status }} </td>
+
+                            <td>
+
+                                {% for item in items %}
+
+                                    {% if item.order.id == i.id %}
+
+                                        {% for image in images %}
+                                            {% if image.product.id == item.product.id %}
+                                                <div class="history">
+                                                    <div> <img class="row-image" src="{{ image.image.url}}"> </div>
+                                                    <div> <p> {{ item.product.name}}</p></div>
+                                                    <div> <p> Количество: {{ item.nmb }}</p></div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
